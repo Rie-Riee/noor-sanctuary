@@ -687,32 +687,36 @@ class _GameSanctuaryTabScreenState extends State<GameSanctuaryTabScreen> {
                     style: GoogleFonts.plusJakartaSans(fontSize: 12, color: Colors.white.withAlpha(220), height: 1.4),
                   ),
                   const SizedBox(height: 18),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 10,
+                    runSpacing: 10,
                     children: [
                       // Social Avatars
                       Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           _buildMiniAvatar('A', const Color(0xFFE9C46A)),
                           Transform.translate(offset: const Offset(-8, 0), child: _buildMiniAvatar('F', const Color(0xFF818CF8))),
                           Transform.translate(offset: const Offset(-16, 0), child: _buildMiniAvatar('R', const Color(0xFF34D399))),
-                          const SizedBox(width: 4),
+                          const SizedBox(width: 2),
                           Text(
-                            'Temanmu baru menyelesaikan kuis',
-                            style: GoogleFonts.plusJakartaSans(fontSize: 10, color: Colors.white70),
+                            '4.8k santri aktif',
+                            style: GoogleFonts.plusJakartaSans(fontSize: 10.5, color: Colors.white70),
                           ),
                         ],
                       ),
                       // Action Button
                       ElevatedButton.icon(
-                        icon: const Icon(Icons.play_arrow, size: 16),
-                        label: const Text('Mulai Main Kuis'),
+                        icon: const Icon(Icons.play_arrow, size: 15),
+                        label: const Text('Mulai Main'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFF59E0B),
                           foregroundColor: const Color(0xFF2E224A),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                          textStyle: GoogleFonts.plusJakartaSans(fontSize: 12, fontWeight: FontWeight.w800),
+                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                          textStyle: GoogleFonts.plusJakartaSans(fontSize: 11.5, fontWeight: FontWeight.w800),
                           elevation: 3,
                         ),
                         onPressed: () => _openGame('sirah', 'Petualangan Sirah Nabawiyah'),
@@ -758,27 +762,33 @@ class _GameSanctuaryTabScreenState extends State<GameSanctuaryTabScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const Icon(Icons.auto_awesome, size: 16, color: AppColors.primary),
-                    const SizedBox(width: 6),
-                    Text(
-                      'Arena Khazanah Edukatif',
-                      style: GoogleFonts.syne(fontSize: 17, fontWeight: FontWeight.w800, color: AppColors.primary),
-                    ),
-                  ],
-                ),
-                Text(
-                  '6 mode permainan interaktif bertingkat dengan koreksi otomatis',
-                  style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppColors.secondary),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.auto_awesome, size: 16, color: AppColors.primary),
+                      const SizedBox(width: 6),
+                      Text(
+                        'Arena Khazanah Edukatif',
+                        style: GoogleFonts.syne(fontSize: 16.5, fontWeight: FontWeight.w800, color: AppColors.primary),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '6 mode permainan edukatif interaktif',
+                    style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppColors.secondary),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(width: 8),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
               decoration: BoxDecoration(
                 color: AppColors.primaryFixed,
                 borderRadius: BorderRadius.circular(12),
@@ -920,10 +930,15 @@ class _GameSanctuaryTabScreenState extends State<GameSanctuaryTabScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  g['footerLeft'] as String,
-                  style: GoogleFonts.plusJakartaSans(fontSize: 10.5, fontWeight: FontWeight.w600, color: AppColors.secondary),
+                Expanded(
+                  child: Text(
+                    g['footerLeft'] as String,
+                    style: GoogleFonts.plusJakartaSans(fontSize: 10.5, fontWeight: FontWeight.w600, color: AppColors.secondary),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
+                const SizedBox(width: 8),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                   decoration: BoxDecoration(
