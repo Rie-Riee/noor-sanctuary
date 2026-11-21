@@ -713,6 +713,7 @@ class _MainScaffoldState extends State<MainScaffold> {
               return Expanded(
                 child: Tooltip(
                   message: item['hint'] as String,
+                  triggerMode: TooltipTriggerMode.manual,
                   waitDuration: const Duration(milliseconds: 250),
                   showDuration: const Duration(seconds: 3),
                   preferBelow: false,

@@ -195,6 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildSisterhoodBanner() {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (_) => const SisterhoodScreen()));
       },
@@ -237,6 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildKidsBanner() {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         if (widget.onNavigateTab != null) {
           widget.onNavigateTab!(1); // Navigate to Kids tab
@@ -773,6 +775,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3),
             child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: it['action'] as VoidCallback,
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 10),
@@ -802,6 +805,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildMurottalBanner() {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (_) => const MurottalPemanasanScreen()));
       },
@@ -933,6 +937,7 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (context, idx) {
             final m = modules[idx];
             return GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: m['action'] as VoidCallback,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
