@@ -1091,25 +1091,32 @@ class _GameSanctuaryTabScreenState extends State<GameSanctuaryTabScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Container(
-                    width: 6,
-                    height: 6,
-                    decoration: const BoxDecoration(color: Color(0xFF3B82F6), shape: BoxShape.circle),
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    'ZONA CERIA & RAMAH BUAH HATI',
-                    style: GoogleFonts.spaceGrotesk(
-                      fontSize: 9.5,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.8,
-                      color: const Color(0xFF1D4ED8),
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      width: 6,
+                      height: 6,
+                      decoration: const BoxDecoration(color: Color(0xFF3B82F6), shape: BoxShape.circle),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        'ZONA CERIA & RAMAH BUAH HATI',
+                        style: GoogleFonts.spaceGrotesk(
+                          fontSize: 9.5,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 0.8,
+                          color: const Color(0xFF1D4ED8),
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              const SizedBox(width: 8),
               const Icon(Icons.directions_car_rounded, size: 20, color: Color(0xFF2563EB)),
             ],
           ),
@@ -1130,7 +1137,7 @@ class _GameSanctuaryTabScreenState extends State<GameSanctuaryTabScreen> {
             children: [
               _buildMiniFeatureCard('🏝️', 'Pulau Hijaiyah', 'Mengenal Huruf'),
               const SizedBox(width: 8),
-              _buildMiniFeatureCard('🎨', 'Kaligrafi Warna', 'Kreativitas Adab'),
+              _buildMiniFeatureCard('🎨', 'Kaligrafi', 'Kreativitas Adab'),
               const SizedBox(width: 8),
               _buildMiniFeatureCard('🌟', 'Rukun Islam', 'Lagu & Cerita'),
             ],
@@ -1166,7 +1173,7 @@ class _GameSanctuaryTabScreenState extends State<GameSanctuaryTabScreen> {
   Widget _buildMiniFeatureCard(String emoji, String title, String desc) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
@@ -1180,13 +1187,15 @@ class _GameSanctuaryTabScreenState extends State<GameSanctuaryTabScreen> {
             const SizedBox(height: 4),
             Text(
               title,
-              style: GoogleFonts.syne(fontSize: 10.5, fontWeight: FontWeight.w700, color: AppColors.onSurface),
+              style: GoogleFonts.syne(fontSize: 10, fontWeight: FontWeight.w700, color: AppColors.onSurface),
+              textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
             Text(
               desc,
               style: GoogleFonts.plusJakartaSans(fontSize: 8.5, color: AppColors.secondary),
+              textAlign: TextAlign.center,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -1214,18 +1223,25 @@ class _GameSanctuaryTabScreenState extends State<GameSanctuaryTabScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  const Icon(Icons.bookmark_outline, size: 17, color: AppColors.primary),
-                  const SizedBox(width: 6),
-                  Text(
-                    'Kutipan Dalil & Refleksi Pekan Ini',
-                    style: GoogleFonts.syne(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.primary),
-                  ),
-                ],
+              Expanded(
+                child: Row(
+                  children: [
+                    const Icon(Icons.bookmark_outline, size: 16, color: AppColors.primary),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        'Kutipan Dalil & Refleksi',
+                        style: GoogleFonts.syne(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.primary),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              const SizedBox(width: 8),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(
                   color: const Color(0xFFF3E8FF),
                   borderRadius: BorderRadius.circular(10),
@@ -1249,10 +1265,15 @@ class _GameSanctuaryTabScreenState extends State<GameSanctuaryTabScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Dari Kuis: Sirah Nabawiyah #12',
-                      style: GoogleFonts.spaceGrotesk(fontSize: 9.5, fontWeight: FontWeight.w700, color: AppColors.primary),
+                    Expanded(
+                      child: Text(
+                        'Dari Kuis: Sirah Nabawiyah #12',
+                        style: GoogleFonts.spaceGrotesk(fontSize: 9.5, fontWeight: FontWeight.w700, color: AppColors.primary),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
+                    const SizedBox(width: 6),
                     Text(
                       '2 Jam Lalu',
                       style: GoogleFonts.plusJakartaSans(fontSize: 9.5, color: AppColors.secondary),

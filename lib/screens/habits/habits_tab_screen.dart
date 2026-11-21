@@ -1510,10 +1510,15 @@ class _HabitsTabScreenState extends State<HabitsTabScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Pekan 14 Ramadhan 1446 H',
-              style: GoogleFonts.plusJakartaSans(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.secondary),
+            Expanded(
+              child: Text(
+                'Pekan 14 Ramadhan 1446 H',
+                style: GoogleFonts.plusJakartaSans(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.secondary),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
+            const SizedBox(width: 6),
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -1525,7 +1530,7 @@ class _HabitsTabScreenState extends State<HabitsTabScreen> {
                   Icon(_isCalendarExpanded ? Icons.expand_less : Icons.calendar_month, size: 15, color: AppColors.primary),
                   const SizedBox(width: 4),
                   Text(
-                    _isCalendarExpanded ? 'Tutup Kalender' : 'Lihat Kalender 30 Hari',
+                    _isCalendarExpanded ? 'Tutup Kalender' : 'Kalender 30 Hari',
                     style: GoogleFonts.plusJakartaSans(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.primary),
                   ),
                 ],
@@ -2171,27 +2176,34 @@ class _HabitsTabScreenState extends State<HabitsTabScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Container(
-                  width: 4,
-                  height: 16,
-                  decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(2),
+            Expanded(
+              child: Row(
+                children: [
+                  Container(
+                    width: 4,
+                    height: 16,
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
                   ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  'Amalan Yaumiyah & Sunnah',
-                  style: GoogleFonts.syne(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.onSurface,
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'Amalan Yaumiyah & Sunnah',
+                      style: GoogleFonts.syne(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.onSurface,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+            const SizedBox(width: 6),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [

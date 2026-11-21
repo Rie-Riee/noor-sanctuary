@@ -2812,16 +2812,23 @@ class _SisterhoodScreenState extends State<SisterhoodScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              children: [
-                Container(width: 4, height: 16, decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(2))),
-                const SizedBox(width: 8),
-                Text(
-                  'Sholat Fardhu & Rawatib',
-                  style: GoogleFonts.syne(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.onSurface),
-                ),
-              ],
+            Expanded(
+              child: Row(
+                children: [
+                  Container(width: 4, height: 16, decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(2))),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      'Sholat Fardhu & Rawatib',
+                      style: GoogleFonts.syne(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.onSurface),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(width: 6),
             TextButton.icon(
               onPressed: _showCatatSholatModal,
               icon: const Icon(Icons.edit_calendar, size: 15, color: AppColors.primary),
@@ -3229,10 +3236,15 @@ class _SisterhoodScreenState extends State<SisterhoodScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              isHaid ? 'Amalan Hari Ini (Khusus Haid)' : 'Target Ibadah Hari Ini',
-              style: GoogleFonts.syne(fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.primary),
+            Expanded(
+              child: Text(
+                isHaid ? 'Amalan Hari Ini (Khusus Haid)' : 'Target Ibadah Hari Ini',
+                style: GoogleFonts.syne(fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.primary),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
+            const SizedBox(width: 6),
             TextButton.icon(
               icon: const Icon(Icons.add, size: 14),
               label: const Text('Tambah'),

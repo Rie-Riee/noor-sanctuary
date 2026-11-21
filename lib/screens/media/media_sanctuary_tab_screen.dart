@@ -687,33 +687,46 @@ class _MediaSanctuaryTabScreenState extends State<MediaSanctuaryTabScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const Icon(Icons.auto_awesome, size: 14, color: AppColors.primary),
-                    const SizedBox(width: 6),
-                    Text(
-                      _isKids ? 'Video Cilik 60 Detik' : 'Syiar 60 Detik',
-                      style: GoogleFonts.syne(fontSize: 17, fontWeight: FontWeight.w700, color: AppColors.primary),
-                    ),
-                  ],
-                ),
-                Text(
-                  _isKids
-                      ? 'Kartun pendek adab makan, hafalan doa harian, & akhlak mulia'
-                      : 'Renungan qolbu vertikal berfaedah & penyejuk jiwa',
-                  style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppColors.secondary),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.auto_awesome, size: 14, color: AppColors.primary),
+                      const SizedBox(width: 6),
+                      Text(
+                        _isKids ? 'Video Cilik 60 Detik' : 'Syiar 60 Detik',
+                        style: GoogleFonts.syne(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.primary),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    _isKids
+                        ? 'Kartun adab, doa & akhlak santri'
+                        : 'Renungan qolbu vertikal berfaedah',
+                    style: GoogleFonts.plusJakartaSans(fontSize: 10.5, color: AppColors.secondary),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(width: 8),
             TextButton(
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
               onPressed: () => _openReelViewer(0),
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text('Lihat Semua', style: GoogleFonts.plusJakartaSans(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.primary)),
-                  const Icon(Icons.arrow_forward_ios, size: 11, color: AppColors.primary),
+                  const SizedBox(width: 2),
+                  const Icon(Icons.arrow_forward_ios, size: 10, color: AppColors.primary),
                 ],
               ),
             ),
@@ -857,8 +870,8 @@ class _MediaSanctuaryTabScreenState extends State<MediaSanctuaryTabScreen> {
                 children: [
                   Flexible(
                     child: Text(
-                      _isKids ? 'Serial Kartun & Belajar Santri' : 'Kajian Pilihan Pekan Ini',
-                      style: GoogleFonts.syne(fontSize: 17, fontWeight: FontWeight.w700, color: AppColors.primary),
+                      _isKids ? 'Serial Kartun Santri' : 'Kajian Pilihan',
+                      style: GoogleFonts.syne(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.primary),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -1039,21 +1052,28 @@ class _MediaSanctuaryTabScreenState extends State<MediaSanctuaryTabScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Icon(_isKids ? Icons.auto_stories : Icons.bedtime, size: 16, color: AppColors.primaryFixed),
-                  const SizedBox(width: 6),
-                  Text(
-                    _isKids ? 'DONGENG TIDUR SANTRI' : 'TADABBUR MALAM',
-                    style: GoogleFonts.spaceGrotesk(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 1.0,
-                      color: AppColors.primaryFixed,
+              Expanded(
+                child: Row(
+                  children: [
+                    Icon(_isKids ? Icons.auto_stories : Icons.bedtime, size: 16, color: AppColors.primaryFixed),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        _isKids ? 'DONGENG TIDUR SANTRI' : 'TADABBUR MALAM',
+                        style: GoogleFonts.spaceGrotesk(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1.0,
+                          color: AppColors.primaryFixed,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              const SizedBox(width: 8),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
