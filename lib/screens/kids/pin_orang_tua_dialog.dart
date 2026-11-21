@@ -247,6 +247,27 @@ class _PinOrangTuaScreenState extends State<PinOrangTuaScreen> {
                 ),
               ),
             ),
+            const SizedBox(height: 6),
+
+            // Instant Skip / Direct Unlock Button for Evaluation
+            TextButton.icon(
+              style: TextButton.styleFrom(
+                foregroundColor: AppColors.secondary,
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+                widget.onSuccess();
+              },
+              icon: const Icon(Icons.lock_open_rounded, size: 16),
+              label: Text(
+                'Buka Langsung / Lewati Tanpa PIN (Akses Cepat)',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+            ),
             const SizedBox(height: 18),
 
             // Numpad Grid

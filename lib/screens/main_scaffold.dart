@@ -303,20 +303,27 @@ class _MainScaffoldState extends State<MainScaffold> {
         onNavigateTab: _onTabSelected,
       ),
       if (_currentMode == SanctuaryMode.sisterhood)
-        const SisterhoodScreen()
+        SisterhoodScreen(onProfileTap: () => _showProfileModal(context))
       else if (_currentMode == SanctuaryMode.kids)
-        KidsSanctuaryScreen(onExitKidsMode: () => _handleModeChange(SanctuaryMode.general))
+        KidsSanctuaryScreen(
+          onExitKidsMode: () => _handleModeChange(SanctuaryMode.general),
+          onProfileTap: () => _showProfileModal(context),
+        )
       else
-        const HabitsTabScreen(),
-      const QuranTabScreen(),
+        HabitsTabScreen(onProfileTap: () => _showProfileModal(context)),
+      QuranTabScreen(onProfileTap: () => _showProfileModal(context)),
       GameSanctuaryTabScreen(
         onSwitchToKids: () {
           if (_currentMode != SanctuaryMode.kids) {
             _handleModeChange(SanctuaryMode.kids);
           }
         },
+        onProfileTap: () => _showProfileModal(context),
       ),
-      MediaSanctuaryTabScreen(mode: _currentMode),
+      MediaSanctuaryTabScreen(
+        mode: _currentMode,
+        onProfileTap: () => _showProfileModal(context),
+      ),
       const QiblaCompassScreen(),
     ];
 

@@ -9,10 +9,12 @@ import 'rangkuman_kuis_screen.dart';
 
 class GameSanctuaryTabScreen extends StatefulWidget {
   final VoidCallback? onSwitchToKids;
+  final VoidCallback? onProfileTap;
 
   const GameSanctuaryTabScreen({
     super.key,
     this.onSwitchToKids,
+    this.onProfileTap,
   });
 
   @override
@@ -347,14 +349,21 @@ class _GameSanctuaryTabScreenState extends State<GameSanctuaryTabScreen> {
               },
             ),
             const SizedBox(width: 6),
-            Container(
-              width: 34,
-              height: 34,
-              decoration: const BoxDecoration(
-                color: Color(0xFF2E264D),
-                shape: BoxShape.circle,
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: widget.onProfileTap,
+              child: Tooltip(
+                message: 'Lihat Profil Pengguna',
+                child: Container(
+                  width: 34,
+                  height: 34,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF2E264D),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.person, color: Colors.white, size: 18),
+                ),
               ),
-              child: const Icon(Icons.person, color: Colors.white, size: 18),
             ),
           ],
         ),

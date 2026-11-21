@@ -29,7 +29,9 @@ class DailyPeriodLog {
 }
 
 class SisterhoodScreen extends StatefulWidget {
-  const SisterhoodScreen({super.key});
+  final VoidCallback? onProfileTap;
+
+  const SisterhoodScreen({super.key, this.onProfileTap});
 
   @override
   State<SisterhoodScreen> createState() => _SisterhoodScreenState();
@@ -1393,6 +1395,47 @@ class _SisterhoodScreenState extends State<SisterhoodScreen> {
                     : Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Sisterhood Sanctuary',
+                                      style: GoogleFonts.syne(fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.primary),
+                                    ),
+                                    const SizedBox(height: 2),
+                                    Text(
+                                      'Thaharah, Siklus Haid & Amalan Muslimah',
+                                      style: GoogleFonts.plusJakartaSans(fontSize: 11, color: AppColors.secondary),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              if (widget.onProfileTap != null)
+                                GestureDetector(
+                                  behavior: HitTestBehavior.opaque,
+                                  onTap: widget.onProfileTap,
+                                  child: Container(
+                                    margin: const EdgeInsets.only(left: 8),
+                                    child: Tooltip(
+                                      message: 'Lihat Profil Muslimah',
+                                      child: const CircleAvatar(
+                                        radius: 17,
+                                        backgroundColor: Color(0xFFFCE7F3),
+                                        child: Icon(Icons.female_rounded, color: Color(0xFFDB2777), size: 18),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                          const SizedBox(height: 14),
                           _buildStatusSwitcherPills(),
                           const SizedBox(height: 16),
                           _buildHabitProgressCard(progress, completedCount, totalCount, isHaid),

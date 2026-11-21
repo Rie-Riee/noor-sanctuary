@@ -12,7 +12,9 @@ import 'tajwid_tracing_screen.dart';
 import '../search/universal_search_sheet.dart';
 
 class QuranTabScreen extends StatefulWidget {
-  const QuranTabScreen({super.key});
+  final VoidCallback? onProfileTap;
+
+  const QuranTabScreen({super.key, this.onProfileTap});
 
   @override
   State<QuranTabScreen> createState() => _QuranTabScreenState();
@@ -249,10 +251,17 @@ class _QuranTabScreenState extends State<QuranTabScreen> {
               },
             ),
             const SizedBox(width: 4),
-            CircleAvatar(
-              radius: 17,
-              backgroundColor: AppColors.primaryFixed,
-              child: const Icon(Icons.person, color: AppColors.primary, size: 18),
+            GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: widget.onProfileTap,
+              child: Tooltip(
+                message: 'Lihat Profil Pengguna',
+                child: CircleAvatar(
+                  radius: 17,
+                  backgroundColor: AppColors.primaryFixed,
+                  child: const Icon(Icons.person, color: AppColors.primary, size: 18),
+                ),
+              ),
             ),
           ],
         ),

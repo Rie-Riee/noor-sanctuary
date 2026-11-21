@@ -18,8 +18,13 @@ class DrawnStroke {
 
 class KidsSanctuaryScreen extends StatefulWidget {
   final VoidCallback onExitKidsMode;
+  final VoidCallback? onProfileTap;
 
-  const KidsSanctuaryScreen({super.key, required this.onExitKidsMode});
+  const KidsSanctuaryScreen({
+    super.key,
+    required this.onExitKidsMode,
+    this.onProfileTap,
+  });
 
   @override
   State<KidsSanctuaryScreen> createState() => _KidsSanctuaryScreenState();
@@ -136,6 +141,291 @@ class _KidsSanctuaryScreenState extends State<KidsSanctuaryScreen> {
     });
   }
 
+  void _openFullscreenTracingModal(BuildContext context) {
+    final curLetter = _letters[_selectedLetterIndex];
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) {
+        return StatefulBuilder(
+          builder: (context, setModalState) {
+            return Dialog.fullscreen(
+              child: Scaffold(
+                backgroundColor: AppColors.surface,
+                appBar: AppBar(
+                  backgroundColor: AppColors.surface,
+                  elevation: 0,
+                  leading: IconButton(
+                    icon: const Icon(Icons.close_rounded, color: AppColors.primary),
+                    onPressed: () {
+                      Navigator.pop(ctx);
+                      setState(() {});
+                    },
+                  ),
+                  title: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFFEF3C7),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Text('✍️', style: TextStyle(fontSize: 16)),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Papan Tulis Huruf: ${curLetter['latin']} (${curLetter['arabic']})',
+                              style: GoogleFonts.syne(fontSize: 16, fontWeight: FontWeight.w800, color: AppColors.primary),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              'Layar Penuh • Bebas Scroll & Nyaman untuk Jari Anak',
+                              style: GoogleFonts.plusJakartaSans(fontSize: 10, color: AppColors.secondary),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    IconButton(
+                      icon: const Icon(Icons.volume_up_rounded, color: AppColors.primary),
+                      tooltip: 'Dengarkan Pelafalan',
+                      onPressed: () => _playLetterSound(curLetter['sound'] as String),
+                    ),
+                    const SizedBox(width: 6),
+                  ],
+                ),
+                body: SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Column(
+                      children: [
+                        // Crayon Bar & Brush Thickness Row
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(18),
+                            boxShadow: [
+                              BoxShadow(color: Colors.black.withAlpha(8), blurRadius: 8),
+                            ],
+                          ),
+                          child: Row(
+                            children: [
+                              Text('Warna:', style: GoogleFonts.plusJakartaSans(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.primary)),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    children: _brushColors.map((b) {
+                                      final col = b['color'] as Color;
+                                      final isSel = _selectedBrushColor == col;
+                                      return GestureDetector(
+                                        onTap: () {
+                                          setModalState(() => _selectedBrushColor = col);
+                                          setState(() => _selectedBrushColor = col);
+                                        },
+                                        child: Container(
+                                          margin: const EdgeInsets.symmetric(horizontal: 4),
+                                          width: isSel ? 28 : 22,
+                                          height: isSel ? 28 : 22,
+                                          decoration: BoxDecoration(
+                                            color: col,
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                              color: isSel ? AppColors.primary : Colors.white,
+                                              width: isSel ? 2.5 : 1.5,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              // Brush Thickness
+                              GestureDetector(
+                                onTap: () {
+                                  setModalState(() => _brushWidth = 8.0);
+                                  setState(() => _brushWidth = 8.0);
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: _brushWidth == 8.0 ? AppColors.primary : AppColors.surfaceContainerLow,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Text('Halus', style: TextStyle(fontSize: 10, color: _brushWidth == 8.0 ? Colors.white : AppColors.primary, fontWeight: FontWeight.bold)),
+                                ),
+                              ),
+                              const SizedBox(width: 4),
+                              GestureDetector(
+                                onTap: () {
+                                  setModalState(() => _brushWidth = 14.0);
+                                  setState(() => _brushWidth = 14.0);
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: _brushWidth == 14.0 ? AppColors.primary : AppColors.surfaceContainerLow,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Text('Tebal', style: TextStyle(fontSize: 10, color: _brushWidth == 14.0 ? Colors.white : AppColors.primary, fontWeight: FontWeight.bold)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+
+                        // Giant Tracing Canvas (Takes all available space)
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(24),
+                              border: Border.all(color: const Color(0xFFFDE68A), width: 2),
+                              boxShadow: [
+                                BoxShadow(color: AppColors.primary.withAlpha(12), blurRadius: 16, offset: const Offset(0, 4)),
+                              ],
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(24),
+                              child: Stack(
+                                children: [
+                                  // Giant Arabic Letter Ghost
+                                  Center(
+                                    child: Text(
+                                      curLetter['arabic'] as String,
+                                      style: TextStyle(
+                                        fontSize: 220,
+                                        color: AppColors.outlineVariant.withAlpha(80),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  // Gesture Detector that NEVER scrolls because dialog has no scroll view
+                                  Positioned.fill(
+                                    child: GestureDetector(
+                                      behavior: HitTestBehavior.opaque,
+                                      onPanStart: (details) {
+                                        setModalState(() {
+                                          _strokes.add(DrawnStroke(
+                                            points: [details.localPosition],
+                                            color: _selectedBrushColor,
+                                            width: _brushWidth,
+                                          ));
+                                        });
+                                      },
+                                      onPanUpdate: (details) {
+                                        if (_strokes.isNotEmpty) {
+                                          setModalState(() {
+                                            _strokes.last.points.add(details.localPosition);
+                                          });
+                                        }
+                                      },
+                                      onTapDown: (details) {
+                                        setModalState(() {
+                                          _strokes.add(DrawnStroke(
+                                            points: [details.localPosition],
+                                            color: _selectedBrushColor,
+                                            width: _brushWidth,
+                                          ));
+                                        });
+                                      },
+                                      child: CustomPaint(
+                                        painter: _TracingPainter(strokes: _strokes),
+                                        size: Size.infinite,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+
+                        // Bottom Action Controls
+                        Row(
+                          children: [
+                            OutlinedButton.icon(
+                              onPressed: _strokes.isEmpty
+                                  ? null
+                                  : () {
+                                      setModalState(() {
+                                        if (_strokes.isNotEmpty) _strokes.removeLast();
+                                      });
+                                    },
+                              icon: const Icon(Icons.undo_rounded, size: 16),
+                              label: const Text('Urung'),
+                              style: OutlinedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            OutlinedButton.icon(
+                              onPressed: _strokes.isEmpty
+                                  ? null
+                                  : () {
+                                      setModalState(() => _strokes.clear());
+                                    },
+                              icon: const Icon(Icons.delete_outline_rounded, size: 16),
+                              label: const Text('Hapus'),
+                              style: OutlinedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                              ),
+                            ),
+                            const Spacer(),
+                            ElevatedButton.icon(
+                              onPressed: () {
+                                setState(() => _stars += 3);
+                                Navigator.pop(ctx);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text('Hebat! Tracing ${curLetter['latin']} selesai! (+3 Bintang Berkah ⭐)'),
+                                    backgroundColor: const Color(0xFF059669),
+                                    behavior: SnackBarBehavior.floating,
+                                  ),
+                                );
+                              },
+                              icon: const Icon(Icons.check_circle_rounded, size: 18),
+                              label: const Text('Selesai (+3 ⭐)'),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF059669),
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                                textStyle: GoogleFonts.plusJakartaSans(fontSize: 12, fontWeight: FontWeight.w800),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -167,6 +457,22 @@ class _KidsSanctuaryScreenState extends State<KidsSanctuaryScreen> {
                   tooltip: 'Kunci PIN Orang Tua (1234)',
                   onPressed: _showParentPinDialog,
                 ),
+                if (widget.onProfileTap != null)
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: widget.onProfileTap,
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 14, left: 4),
+                      child: const Tooltip(
+                        message: 'Profil Santri Cilik',
+                        child: CircleAvatar(
+                          radius: 14,
+                          backgroundColor: Color(0xFF10B981),
+                          child: Icon(Icons.child_care_rounded, color: Colors.white, size: 16),
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
       body: SafeArea(
@@ -433,6 +739,42 @@ class _KidsSanctuaryScreenState extends State<KidsSanctuaryScreen> {
                             ),
                           ],
                         ),
+                        const SizedBox(height: 12),
+
+                        // Fullscreen / Zoom Button Banner
+                        GestureDetector(
+                          behavior: HitTestBehavior.opaque,
+                          onTap: () => _openFullscreenTracingModal(context),
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                            decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                colors: [Color(0xFFFEF3C7), Color(0xFFFDE68A)],
+                              ),
+                              borderRadius: BorderRadius.circular(16),
+                              border: Border.all(color: const Color(0xFFF59E0B)),
+                              boxShadow: [
+                                BoxShadow(color: const Color(0xFFF59E0B).withAlpha(40), blurRadius: 8, offset: const Offset(0, 2)),
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.fullscreen_rounded, color: Color(0xFFB45309), size: 20),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Perbesar Papan Tulis (Layar Penuh • Bebas Scroll) 🔍',
+                                  style: GoogleFonts.plusJakartaSans(
+                                    fontSize: 11.5,
+                                    fontWeight: FontWeight.w800,
+                                    color: const Color(0xFF92400E),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                         const SizedBox(height: 14),
 
                         // Brush Tools: Color Palette & Thickness Picker
@@ -624,6 +966,26 @@ class _KidsSanctuaryScreenState extends State<KidsSanctuaryScreen> {
                                       ),
                                     ),
                                   ),
+
+                                // Quick Zoom Fullscreen Button on Top-Right Corner
+                                Positioned(
+                                  top: 8,
+                                  right: 8,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withAlpha(220),
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(color: Colors.black.withAlpha(15), blurRadius: 4),
+                                      ],
+                                    ),
+                                    child: IconButton(
+                                      tooltip: 'Perbesar Layar Penuh',
+                                      icon: const Icon(Icons.fullscreen_rounded, color: AppColors.primary, size: 22),
+                                      onPressed: () => _openFullscreenTracingModal(context),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),

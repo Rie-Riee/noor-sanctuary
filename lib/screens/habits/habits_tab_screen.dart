@@ -36,7 +36,9 @@ class HabitItem {
 }
 
 class HabitsTabScreen extends StatefulWidget {
-  const HabitsTabScreen({super.key});
+  final VoidCallback? onProfileTap;
+
+  const HabitsTabScreen({super.key, this.onProfileTap});
 
   @override
   State<HabitsTabScreen> createState() => _HabitsTabScreenState();
@@ -1452,41 +1454,65 @@ class _HabitsTabScreenState extends State<HabitsTabScreen> {
   // 1. HERO SANCTUARY HEADER (STITCH)
   // ==========================================
   Widget _buildHeroSanctuaryHeader() {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-          decoration: BoxDecoration(
-            color: AppColors.secondaryContainer,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(Icons.spa, size: 14, color: AppColors.primary),
-              const SizedBox(width: 6),
-              Text(
-                'Fase Maghfirah • 10 Hari Kedua',
-                style: GoogleFonts.plusJakartaSans(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.onSecondaryContainer,
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                decoration: BoxDecoration(
+                  color: AppColors.secondaryContainer,
+                  borderRadius: BorderRadius.circular(20),
                 ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.spa, size: 14, color: AppColors.primary),
+                    const SizedBox(width: 6),
+                    Text(
+                      'Fase Maghfirah • 10 Hari Kedua',
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.onSecondaryContainer,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Istiqomah Journey',
+                style: GoogleFonts.syne(fontSize: 26, fontWeight: FontWeight.w800, color: AppColors.primary, letterSpacing: -0.5),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Menjaga ritme ibadah yaumiyah dan pembersihan jiwa (Tazkiyatun Nafs) harian keluarga.',
+                style: GoogleFonts.plusJakartaSans(fontSize: 12, height: 1.4, color: AppColors.onSurfaceVariant),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 8),
-        Text(
-          'Istiqomah Journey',
-          style: GoogleFonts.syne(fontSize: 26, fontWeight: FontWeight.w800, color: AppColors.primary, letterSpacing: -0.5),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          'Menjaga ritme ibadah yaumiyah dan pembersihan jiwa (Tazkiyatun Nafs) harian keluarga.',
-          style: GoogleFonts.plusJakartaSans(fontSize: 12, height: 1.4, color: AppColors.onSurfaceVariant),
-        ),
+        if (widget.onProfileTap != null)
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: widget.onProfileTap,
+            child: Container(
+              margin: const EdgeInsets.only(left: 12, top: 4),
+              child: Tooltip(
+                message: 'Lihat Profil Pengguna',
+                child: const CircleAvatar(
+                  radius: 17,
+                  backgroundColor: AppColors.primaryFixed,
+                  child: Icon(Icons.person, color: AppColors.primary, size: 18),
+                ),
+              ),
+            ),
+          ),
       ],
     );
   }

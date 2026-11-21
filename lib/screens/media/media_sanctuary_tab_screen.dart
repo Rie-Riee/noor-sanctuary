@@ -9,10 +9,12 @@ import 'docuseries_detail_screen.dart';
 
 class MediaSanctuaryTabScreen extends StatefulWidget {
   final SanctuaryMode mode;
+  final VoidCallback? onProfileTap;
 
   const MediaSanctuaryTabScreen({
     super.key,
     this.mode = SanctuaryMode.general,
+    this.onProfileTap,
   });
 
   @override
@@ -355,6 +357,22 @@ class _MediaSanctuaryTabScreenState extends State<MediaSanctuaryTabScreen> {
                   tooltip: 'Pencarian Universal',
                   onPressed: () => showUniversalSearch(context),
                 ),
+                if (widget.onProfileTap != null)
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: widget.onProfileTap,
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 14, left: 4),
+                      child: Tooltip(
+                        message: 'Profil ${widget.mode.accountName}',
+                        child: CircleAvatar(
+                          radius: 15,
+                          backgroundColor: widget.mode.accountColor,
+                          child: Icon(widget.mode.accountIcon, color: Colors.white, size: 16),
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
       body: SafeArea(
