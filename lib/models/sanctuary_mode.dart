@@ -82,4 +82,59 @@ enum SanctuaryMode {
         return ['Belajar Huruf', 'Parent PIN'];
     }
   }
+
+  String get accountName {
+    switch (this) {
+      case SanctuaryMode.general:
+        return 'Keluarga Rayyan';
+      case SanctuaryMode.sisterhood:
+        return 'Ummu Rayyan';
+      case SanctuaryMode.kids:
+        return 'Ahmad Rayyan';
+    }
+  }
+
+  String get accountRole {
+    switch (this) {
+      case SanctuaryMode.general:
+        return 'Akun Utama Keluarga';
+      case SanctuaryMode.sisterhood:
+        return 'Muslimah Aktif';
+      case SanctuaryMode.kids:
+        return 'Santri Cilik (Anak)';
+    }
+  }
+
+  String get accountEmail {
+    switch (this) {
+      case SanctuaryMode.general:
+        return 'keluarga.rayyan@sanctuary.id';
+      case SanctuaryMode.sisterhood:
+        return 'aisyah.iman@sanctuary.id';
+      case SanctuaryMode.kids:
+        return 'ahmad.rayyan@sanctuary.id';
+    }
+  }
+
+  IconData get accountIcon {
+    switch (this) {
+      case SanctuaryMode.general:
+        return Icons.people_alt_rounded;
+      case SanctuaryMode.sisterhood:
+        return Icons.spa_rounded;
+      case SanctuaryMode.kids:
+        return Icons.face_rounded;
+    }
+  }
+
+  Color get accountColor {
+    switch (this) {
+      case SanctuaryMode.general:
+        return AppColors.primary;
+      case SanctuaryMode.sisterhood:
+        return AppColors.primary;
+      case SanctuaryMode.kids:
+        return Colors.green;
+    }
+  }
 }

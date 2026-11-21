@@ -172,18 +172,10 @@ class LogoutConfirmationDialog extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 22,
-                  backgroundColor: currentMode == SanctuaryMode.kids
-                      ? Colors.green
-                      : AppColors.primaryFixed,
+                  backgroundColor: currentMode.accountColor,
                   child: Icon(
-                    currentMode == SanctuaryMode.kids
-                        ? Icons.face_rounded
-                        : currentMode == SanctuaryMode.sisterhood
-                            ? Icons.spa_rounded
-                            : Icons.person,
-                    color: currentMode == SanctuaryMode.kids
-                        ? Colors.white
-                        : AppColors.primary,
+                    currentMode.accountIcon,
+                    color: Colors.white,
                     size: 24,
                   ),
                 ),
@@ -195,11 +187,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            currentMode == SanctuaryMode.kids
-                                ? 'Ahmad Rayyan'
-                                : currentMode == SanctuaryMode.sisterhood
-                                    ? 'Ummu Rayyan'
-                                    : 'Keluarga Rayyan',
+                            currentMode.accountName,
                             style: GoogleFonts.syne(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
@@ -226,11 +214,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        currentMode == SanctuaryMode.kids
-                            ? 'ahmad.rayyan@sanctuary.id'
-                            : currentMode == SanctuaryMode.sisterhood
-                                ? 'aisyah.iman@sanctuary.id'
-                                : 'keluarga.rayyan@sanctuary.id',
+                        currentMode.accountEmail,
                         style: GoogleFonts.plusJakartaSans(
                           fontSize: 11,
                           color: AppColors.outline,
@@ -289,9 +273,9 @@ class LogoutConfirmationDialog extends StatelessWidget {
             children: [
               Expanded(
                 child: _buildModeOption(
-                  icon: Icons.spa_outlined,
-                  title: 'Sisterhood',
-                  subtitle: 'Halaqah & Du\'a',
+                  icon: Icons.spa_rounded,
+                  title: 'Ummu Rayyan',
+                  subtitle: 'Sisterhood',
                   color: AppColors.lavender,
                   isSelected: currentMode == SanctuaryMode.sisterhood,
                   onTap: () {
@@ -303,9 +287,9 @@ class LogoutConfirmationDialog extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: _buildModeOption(
-                  icon: Icons.menu_book_rounded,
-                  title: 'Kids...',
-                  subtitle: 'Juz Amma Audio',
+                  icon: Icons.face_rounded,
+                  title: 'Ahmad Rayyan',
+                  subtitle: 'Kids Sanctuary',
                   color: AppColors.mistySage,
                   isSelected: currentMode == SanctuaryMode.kids,
                   onTap: () {
@@ -317,16 +301,14 @@ class LogoutConfirmationDialog extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: _buildModeOption(
-                  icon: Icons.add_rounded,
-                  title: 'Tambah Akun',
-                  subtitle: 'Kelola Profil',
+                  icon: Icons.people_alt_rounded,
+                  title: 'Keluarga',
+                  subtitle: 'General Mode',
                   color: AppColors.primaryFixed,
-                  isSelected: false,
+                  isSelected: currentMode == SanctuaryMode.general,
                   onTap: () {
                     Navigator.pop(context);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Membuka formulir pendaftaran anggota keluarga santri...')),
-                    );
+                    onSwitchMode(SanctuaryMode.general);
                   },
                 ),
               ),

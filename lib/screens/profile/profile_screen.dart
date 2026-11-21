@@ -1051,7 +1051,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               Text(
-                'Masuk sebagai Aisyah Nurul Iman. Semua data ibadah tersinkronisasi aman ke cloud.',
+                'Masuk sebagai $_userName. Semua data ibadah tersinkronisasi aman ke cloud.',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.plusJakartaSans(fontSize: 10, color: AppColors.outline),
               ),

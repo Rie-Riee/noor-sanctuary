@@ -183,7 +183,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                       title: Row(
                         children: [
                           Text(
-                            mode.title,
+                            '${mode.accountName} • ${mode.title}',
                             style: GoogleFonts.plusJakartaSans(
                               fontSize: 13,
                               fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
@@ -209,7 +209,7 @@ class _MainScaffoldState extends State<MainScaffold> {
                         ],
                       ),
                       subtitle: Text(
-                        mode.description,
+                        '${mode.accountRole} — ${mode.description}',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.plusJakartaSans(fontSize: 10.5, color: AppColors.outline),
@@ -595,25 +595,15 @@ class _MainScaffoldState extends State<MainScaffold> {
                       GestureDetector(
                         onTap: () => _showProfileModal(context),
                         child: Tooltip(
-                          message: _currentMode == SanctuaryMode.kids
-                              ? 'Profil Ahmad Rayyan (Santri Cilik)'
-                              : _currentMode == SanctuaryMode.sisterhood
-                                  ? 'Profil Ummu Rayyan (Muslimah Aktif)'
-                                  : 'Profil Keluarga Rayyan (Akun Utama)',
+                          message: 'Profil ${_currentMode.accountName} (${_currentMode.accountRole})',
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               CircleAvatar(
                                 radius: 16,
-                                backgroundColor: _currentMode == SanctuaryMode.kids
-                                    ? Colors.green
-                                    : AppColors.primary,
+                                backgroundColor: _currentMode.accountColor,
                                 child: Icon(
-                                  _currentMode == SanctuaryMode.kids
-                                      ? Icons.face_rounded
-                                      : _currentMode == SanctuaryMode.sisterhood
-                                          ? Icons.spa_rounded
-                                          : Icons.person,
+                                  _currentMode.accountIcon,
                                   size: 17,
                                   color: Colors.white,
                                 ),
@@ -625,19 +615,11 @@ class _MainScaffoldState extends State<MainScaffold> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      _currentMode == SanctuaryMode.kids
-                                          ? 'Ahmad Rayyan'
-                                          : _currentMode == SanctuaryMode.sisterhood
-                                              ? 'Ummu Rayyan'
-                                              : 'Keluarga Rayyan',
+                                      _currentMode.accountName,
                                       style: GoogleFonts.syne(fontSize: 11.5, fontWeight: FontWeight.w700, color: AppColors.onSurface),
                                     ),
                                     Text(
-                                      _currentMode == SanctuaryMode.kids
-                                          ? 'Santri Cilik (Anak)'
-                                          : _currentMode == SanctuaryMode.sisterhood
-                                              ? 'Muslimah Aktif'
-                                              : 'Akun Utama Keluarga',
+                                      _currentMode.accountRole,
                                       style: GoogleFonts.plusJakartaSans(fontSize: 9.5, color: AppColors.secondary),
                                     ),
                                   ],

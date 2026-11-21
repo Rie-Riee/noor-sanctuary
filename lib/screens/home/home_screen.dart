@@ -402,22 +402,12 @@ class _HomeScreenState extends State<HomeScreen> {
               GestureDetector(
                 onTap: _showProfileModal,
                 child: Tooltip(
-                  message: widget.mode == SanctuaryMode.kids
-                      ? 'Profil Ahmad Rayyan (Santri Cilik)'
-                      : widget.mode == SanctuaryMode.sisterhood
-                          ? 'Profil Ummu Rayyan (Muslimah Aktif)'
-                          : 'Profil Keluarga Rayyan (Akun Utama)',
+                  message: 'Profil ${widget.mode.accountName} (${widget.mode.accountRole})',
                   child: CircleAvatar(
                     radius: 14,
-                    backgroundColor: widget.mode == SanctuaryMode.kids
-                        ? Colors.green
-                        : AppColors.primary,
+                    backgroundColor: widget.mode.accountColor,
                     child: Icon(
-                      widget.mode == SanctuaryMode.kids
-                          ? Icons.face_rounded
-                          : widget.mode == SanctuaryMode.sisterhood
-                              ? Icons.spa_rounded
-                              : Icons.person,
+                      widget.mode.accountIcon,
                       size: 16,
                       color: Colors.white,
                     ),
