@@ -1,0 +1,548 @@
+<!-- Tasbih Digital & Counter Dzikir Khusyu' -->
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-container-low": "#f3f2ff", "secondary-fixed-dim": "#bac8d3", "on-primary-container": "#d3c8f7", "tertiary-container": "#4d5b55", "on-tertiary-container": "#c3d2ca", "tertiary-fixed": "#d7e6de", "surface-container-high": "#e4e7ff", "surface-container-lowest": "#ffffff", "surface-bright": "#faf8ff", error: "#ba1a1a", "tertiary-fixed-dim": "#bbcac2", "primary-container": "#5b527a", "secondary-container": "#d6e4ef", "on-tertiary-fixed": "#111e19", "inverse-on-surface": "#eff0ff", "on-surface-variant": "#48454e", "on-secondary-container": "#59666f", secondary: "#536069", "secondary-fixed": "#d6e4ef", "on-primary": "#ffffff", "surface-container": "#ebedff", "surface-container-highest": "#dde1fc", "on-surface": "#151b2e", "on-secondary": "#ffffff", "surface-dim": "#d5d9f3", "error-container": "#ffdad6", "primary-fixed": "#e7deff", "on-primary-fixed-variant": "#4a4168", tertiary: "#36443e", "outline-variant": "#cac4cf", "on-primary-fixed": "#1e153a", "on-tertiary": "#ffffff", primary: "#433b61", "on-background": "#151b2e", "on-error": "#ffffff", "surface-variant": "#dde1fc", "surface-tint": "#625981", "on-secondary-fixed-variant": "#3b4851", "primary-fixed-dim": "#ccc0ef", "inverse-primary": "#ccc0ef", "inverse-surface": "#2a3043", "on-tertiary-fixed-variant": "#3c4a44", "on-secondary-fixed": "#101d25", "on-error-container": "#93000a", background: "#faf8ff", surface: "#faf8ff", outline: "#79757f"}, borderRadius: {DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px"}, spacing: {"gutter-mobile": "1rem", gutter: "1.5rem", "space-lg": "1.75rem", "space-xs": "0.25rem", "space-xl": "3rem", "margin-mobile": "1.25rem", "space-md": "1rem", "space-sm": "0.5rem", margin: "3rem"}, fontFamily: {"body-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-lg": ["Noto Serif"], "label-md": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "quran-verse": ["Noto Serif"], "headline-sm": ["Noto Serif"], "headline-lg-mobile": ["Noto Serif"], "display-hero-mobile": ["Noto Serif"], "label-caps": ["Space Grotesk"], "headline-md": ["Noto Serif"], "display-hero": ["Noto Serif"], headline: ["Syne"], display: ["Syne"], body: ["Plus Jakarta Sans"], label: ["Plus Jakarta Sans"]}, fontSize: {"body-lg": ["17px", {lineHeight: "28px", fontWeight: "400"}], "label-sm": ["11px", {lineHeight: "14px", fontWeight: "500"}], "body-md": ["15px", {lineHeight: "24px", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "500"}], "label-md": ["13px", {lineHeight: "16px", fontWeight: "500"}], "body-sm": ["13px", {lineHeight: "20px", fontWeight: "400"}], "quran-verse": ["26px", {lineHeight: "50px", fontWeight: "400"}], "headline-sm": ["18px", {lineHeight: "24px", fontWeight: "600"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", letterSpacing: "0em", fontWeight: "500"}], "display-hero-mobile": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "400"}], "label-caps": ["11px", {lineHeight: "14px", letterSpacing: "0.12em", fontWeight: "600"}], "headline-md": ["22px", {lineHeight: "28px", fontWeight: "600"}], "display-hero": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "400"}]}}}}</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><button aria-label="Go back" class="w-11 h-11 -ml-space-xs rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/60 transition-colors" onclick="history.back()"><span class="material-symbols-outlined text-[22px]">arrow_back_ios_new</span></button><h1 class="font-headline-sm text-headline-sm text-on-surface truncate tracking-tight">Tasbih Digital</h1></div><div class="flex items-center gap-space-xs flex-shrink-0"><button aria-label="Bookmark and save" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high/60 transition-colors"><span class="material-symbols-outlined text-[22px]">bookmark</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full text-on-surface select-none pb-space-xl relative overflow-hidden" id="tasbihRoot">
+<!-- Ambient Sacred Light Accents -->
+<div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-secondary-fixed/15 rounded-full blur-3xl -z-10"></div>
+<div class="pointer-events-none absolute top-1/3 right-0 w-64 h-64 bg-tertiary-fixed/20 rounded-full blur-3xl -z-10"></div>
+<!-- 1. Header Dzikir Selector Strip (Scrollable Horizontal Sanctuary Tabs) -->
+<section class="w-full pt-space-xs px-margin-mobile">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">spa</span>
+        Pilihan Kalimat Thayyibah
+      </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container inline-block"></span>
+        Target Terpilih
+      </span>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto py-1 scroll-smooth no-scrollbar" id="dzikirList">
+<button class="dzikir-pill flex-shrink-0 px-3.5 py-2 rounded-full bg-primary text-on-primary transition-all duration-300 shadow-sm flex items-center gap-1.5" id="pill-0" onclick="selectDzikir(0)">
+<span class="font-label-md text-label-md font-medium">Subhanallah</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-surface-container-lowest/20 text-on-primary">33x</span>
+</button>
+<button class="dzikir-pill flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all duration-300 flex items-center gap-1.5" id="pill-1" onclick="selectDzikir(1)">
+<span class="font-label-md text-label-md font-medium">Alhamdulillah</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant">33x</span>
+</button>
+<button class="dzikir-pill flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all duration-300 flex items-center gap-1.5" id="pill-2" onclick="selectDzikir(2)">
+<span class="font-label-md text-label-md font-medium">Allahu Akbar</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant">33x</span>
+</button>
+<button class="dzikir-pill flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all duration-300 flex items-center gap-1.5" id="pill-3" onclick="selectDzikir(3)">
+<span class="font-label-md text-label-md font-medium">Astaghfirullah</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant">100x</span>
+</button>
+<button class="dzikir-pill flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all duration-300 flex items-center gap-1.5" id="pill-4" onclick="selectDzikir(4)">
+<span class="font-label-md text-label-md font-medium">Laa ilaha illallah</span>
+<span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant">100x</span>
+</button>
+<button class="dzikir-pill flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all duration-300 flex items-center gap-1.5" id="pill-5" onclick="selectDzikir(5)">
+<span class="font-label-md text-label-md font-medium">Dzikir Bebas</span>
+<span class="material-symbols-outlined text-[16px]">all_inclusive</span>
+</button>
+</div>
+</section>
+<!-- 2. Sacred Arabic Display Panel with Illuminated Frame -->
+<section class="mt-space-md px-margin-mobile">
+<div class="relative w-full rounded-xl bg-surface-container-low p-space-md text-center overflow-hidden shadow-sm">
+<div class="absolute inset-0 bg-gradient-to-b from-secondary-fixed/10 via-transparent to-surface-container-lowest/30 pointer-events-none"></div>
+<!-- Eight-point star ornamental marker -->
+<div class="flex justify-center items-center mb-1 text-secondary">
+<span class="material-symbols-outlined text-[20px]">star_rate</span>
+</div>
+<!-- Arabic Calligraphy Text -->
+<div class="font-quran-verse text-quran-verse text-primary tracking-normal py-1 transition-all duration-300" id="arabicText">
+        سُبْحَانَ اللَّهِ
+      </div>
+<!-- Transliteration -->
+<p class="font-headline-sm text-headline-sm text-secondary font-medium tracking-wide mt-1" id="latinText">
+        Subhānallāh
+      </p>
+<!-- Spiritual Meaning & Contemplation Note -->
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs mx-auto mt-1 leading-relaxed" id="meaningText">
+        “Maha Suci Allah dari segala kekurangan dan kepalsuan alam semesta.”
+      </p>
+<div class="mt-2 flex items-center justify-center gap-1.5">
+<span class="font-label-sm text-label-sm text-on-tertiary-container bg-surface-container px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_stories</span>
+          Sunnah Ba'da Shalat
+        </span>
+</div>
+</div>
+</section>
+<!-- 3. Radial Progress Ring with Pearl/Mist Texture -->
+<section class="mt-space-lg flex flex-col items-center justify-center px-margin-mobile relative">
+<div class="relative w-64 h-64 flex items-center justify-center">
+<!-- Glow Underlay -->
+<div class="absolute inset-4 rounded-full bg-gradient-to-tr from-secondary-fixed-dim/20 to-primary-fixed/20 blur-xl"></div>
+<!-- SVG Circular Progress -->
+<svg class="w-full h-full -rotate-90 transform" viewbox="0 0 240 240">
+<!-- Track Background -->
+<circle class="text-surface-container-high opacity-70" cx="120" cy="120" fill="none" r="98" stroke="currentColor" stroke-width="10"></circle>
+<!-- Progress Bar -->
+<circle class="transition-all duration-300 ease-out" cx="120" cy="120" fill="none" id="progressCircle" r="98" stroke="#7b5902" stroke-dasharray="615.75" stroke-dashoffset="111.95" stroke-linecap="round" stroke-width="11" style="stroke-dashoffset: 111.955;"></circle>
+</svg>
+<!-- Center Pearl Display -->
+<div class="absolute inset-8 rounded-full bg-surface-container-lowest shadow-md flex flex-col items-center justify-center text-center p-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-0.5">Putaran Tasbih</span>
+<div class="flex items-baseline justify-center gap-1">
+<span class="font-display-hero-mobile text-display-hero-mobile text-primary font-bold transition-transform duration-150" id="counterValue">27</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant font-normal" id="targetDenominator">/ 33</span>
+</div>
+<!-- Lap / Cycle Counter Badge -->
+<div class="mt-1 flex items-center gap-1 bg-surface-container-low px-2.5 py-1 rounded-full text-secondary">
+<span class="material-symbols-outlined text-[14px]">autorenew</span>
+<span class="font-label-sm text-label-sm font-semibold" id="roundCounter">Putaran ke-1</span>
+</div>
+</div>
+</div>
+<!-- Toggle Controls: Haptic & Wooden Click Sound -->
+<div class="mt-space-md w-full max-w-xs flex items-center justify-between gap-3 bg-surface-container-low p-2 rounded-full">
+<button class="flex-1 py-1.5 px-3 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm flex items-center justify-center gap-1.5 transition-all" id="btnHaptic" onclick="toggleHaptic()">
+<span class="material-symbols-outlined text-[17px] text-secondary">vibration</span>
+<span>Haptic: ON</span>
+</button>
+<button class="flex-1 py-1.5 px-3 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm flex items-center justify-center gap-1.5 transition-all" id="btnAudio" onclick="toggleAudio()">
+<span class="material-symbols-outlined text-[17px] text-secondary">volume_up</span>
+<span>Suara Kayu</span>
+</button>
+</div>
+</section>
+<!-- 4. Giant Thumb Touch Target with Radiant Ripple Feedback -->
+<section class="mt-space-md px-margin-mobile flex justify-center">
+<div class="w-full max-w-sm">
+<button class="relative w-full h-32 rounded-3xl bg-gradient-to-b from-primary to-primary-container text-on-primary shadow-xl overflow-hidden flex flex-col items-center justify-center active:scale-[0.98] transition-transform duration-150 group" id="giantTasbihBtn" onclick="incrementCounter(event)">
+<!-- Ripple Container -->
+<span class="absolute inset-0 pointer-events-none" id="rippleSurface"></span>
+<!-- Subdued Arch Mihrab vector motif -->
+<div class="absolute -right-6 -bottom-6 w-28 h-28 rounded-full bg-surface-container-lowest/5 pointer-events-none"></div>
+<div class="absolute -left-6 -top-6 w-28 h-28 rounded-full bg-surface-container-lowest/5 pointer-events-none"></div>
+<div class="w-14 h-14 rounded-full bg-surface-container-lowest/15 flex items-center justify-center mb-1.5 group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[32px] text-secondary-fixed">touch_app</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-medium tracking-wide">Sentuh Untuk Menghitung</span>
+<span class="font-label-sm text-label-sm text-on-primary-container mt-0.5">Ibu jari terasa tenang &amp; bersahaja</span>
+</button>
+</div>
+</section>
+<!-- 5. Daily Aggregated Progress & Target Status -->
+<section class="mt-space-lg px-margin-mobile">
+<div class="w-full rounded-2xl bg-surface-container-low p-space-md shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-9 h-9 rounded-full bg-secondary-container/50 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[20px]">military_tech</span>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase">Target Wirid Harian</div>
+<div class="font-headline-sm text-headline-sm text-primary font-semibold" id="totalDzikirLabel">Total: 842 Butir</div>
+</div>
+</div>
+<span class="font-label-md text-label-md px-2.5 py-1 rounded-full bg-surface-container-highest text-secondary font-semibold">
+          84% Selesai
+        </span>
+</div>
+<!-- Linear progress bar -->
+<div class="w-full bg-surface-container-highest h-2.5 rounded-full mt-3 overflow-hidden">
+<div class="h-full bg-secondary rounded-full transition-all duration-500" id="dailyProgressBar" style="width: 84.2%;"></div>
+</div>
+<div class="flex items-center justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant">
+<span>Target: 1.000 Butir / Hari</span>
+<span>Sisa 158 butir</span>
+</div>
+</div>
+</section>
+<!-- 6. Bottom Sanctuary Utilities (Reset, Notes, Weekly History, OLED Night) -->
+<section class="mt-space-md px-margin-mobile">
+<div class="grid grid-cols-4 gap-2">
+<!-- Reset Counter -->
+<button class="flex flex-col items-center justify-center p-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" onclick="promptResetModal()">
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant">restart_alt</span>
+<span class="font-label-sm text-label-sm text-on-surface mt-1">Ulangi</span>
+</button>
+<!-- Simpan Catatan Wirid -->
+<button class="flex flex-col items-center justify-center p-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" onclick="openNoteModal()">
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant">draw</span>
+<span class="font-label-sm text-label-sm text-on-surface mt-1">Catatan</span>
+</button>
+<!-- Riwayat Mingguan -->
+<button class="flex flex-col items-center justify-center p-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" onclick="openWeeklyHistory()">
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant">calendar_view_week</span>
+<span class="font-label-sm text-label-sm text-on-surface mt-1">Riwayat</span>
+</button>
+<!-- Mode OLED Focus -->
+<button class="flex flex-col items-center justify-center p-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors" id="oledToggleBtn" onclick="toggleOledFocus()">
+<span class="material-symbols-outlined text-[22px] text-on-surface-variant">bedtime</span>
+<span class="font-label-sm text-label-sm text-on-surface mt-1">OLED Khusyu</span>
+</button>
+</div>
+</section>
+<!-- Reset Confirmation Dialog Modal -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center px-6" id="resetDialog">
+<div class="w-full max-w-xs rounded-2xl bg-surface-container-lowest p-space-md shadow-2xl text-center">
+<div class="w-12 h-12 rounded-full bg-error-container text-error flex items-center justify-center mx-auto mb-3">
+<span class="material-symbols-outlined text-[26px]">history_edu</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Mulai Dari Awal?</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+        Hitungan putaran aktif saat ini akan dikembalikan ke angka 0. Total akumulasi dzikir hari ini tetap tersimpan aman.
+      </p>
+<div class="grid grid-cols-2 gap-2 mt-4">
+<button class="py-2 px-3 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md" onclick="closeResetModal()">
+          Batal
+        </button>
+<button class="py-2 px-3 rounded-lg bg-error text-on-error font-label-md text-label-md font-medium" onclick="confirmReset()">
+          Ya, Ulangi
+        </button>
+</div>
+</div>
+</div>
+<!-- Weekly History Bottom Sheet Modal -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-end justify-center" id="historyModal">
+<div class="w-full max-w-lg rounded-t-3xl bg-surface-container-lowest p-space-lg shadow-2xl">
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">monitoring</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Riwayat Wirid 7 Hari</h3>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant" onclick="closeWeeklyHistory()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Sparkline / Mini Bar Chart -->
+<div class="grid grid-cols-7 gap-2 pt-4 items-end h-36">
+<div class="flex flex-col items-center gap-1.5 h-full justify-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sen</span>
+<div class="w-full bg-surface-container-highest rounded-t-md h-20"></div>
+<span class="font-label-sm text-label-sm text-on-surface">750</span>
+</div>
+<div class="flex flex-col items-center gap-1.5 h-full justify-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sel</span>
+<div class="w-full bg-surface-container-highest rounded-t-md h-24"></div>
+<span class="font-label-sm text-label-sm text-on-surface">900</span>
+</div>
+<div class="flex flex-col items-center gap-1.5 h-full justify-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rab</span>
+<div class="w-full bg-secondary-fixed-dim rounded-t-md h-28"></div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">1.100</span>
+</div>
+<div class="flex flex-col items-center gap-1.5 h-full justify-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Kam</span>
+<div class="w-full bg-surface-container-highest rounded-t-md h-20"></div>
+<span class="font-label-sm text-label-sm text-on-surface">780</span>
+</div>
+<div class="flex flex-col items-center gap-1.5 h-full justify-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Jum</span>
+<div class="w-full bg-secondary rounded-t-md h-32"></div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">1.500</span>
+</div>
+<div class="flex flex-col items-center gap-1.5 h-full justify-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sab</span>
+<div class="w-full bg-surface-container-highest rounded-t-md h-16"></div>
+<span class="font-label-sm text-label-sm text-on-surface">600</span>
+</div>
+<div class="flex flex-col items-center gap-1.5 h-full justify-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ahad</span>
+<div class="w-full bg-primary rounded-t-md h-22"></div>
+<span class="font-label-sm text-label-sm text-primary font-bold">842</span>
+</div>
+</div>
+<div class="mt-4 p-3 rounded-xl bg-surface-container-low flex items-center justify-between text-on-surface">
+<span class="font-label-md text-label-md">Rata-rata Harian:</span>
+<span class="font-label-md text-label-md font-bold text-secondary">924 Butir / Hari</span>
+</div>
+</div>
+</div>
+<!-- Catatan Wirid Modal -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center px-6" id="noteModal">
+<div class="w-full max-w-sm rounded-2xl bg-surface-container-lowest p-space-md shadow-2xl">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Refleksi &amp; Catatan Hati</h3>
+<button class="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant" onclick="closeNoteModal()">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-3">Tuliskan doa atau ketenangan yang dirasakan setelah mengamalkan dzikir ini.</p>
+<textarea class="w-full p-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm border-0 focus:outline-none focus:ring-0 placeholder:text-on-surface-variant/50" id="noteInput" placeholder="Ya Allah, curahkan ketetapan hati dalam keimanan..." rows="3"></textarea>
+<div class="flex justify-end gap-2 mt-3">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container font-label-md text-label-md text-on-surface" onclick="closeNoteModal()">Batal</button>
+<button class="px-4 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-medium" onclick="saveNote()">Simpan</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // State Store
+  const dzikirCollection = [
+    {
+      name: "Subhanallah",
+      target: 33,
+      arabic: "سُبْحَانَ اللَّهِ",
+      latin: "Subhānallāh",
+      meaning: "“Maha Suci Allah dari segala kekurangan dan kepalsuan alam semesta.”"
+    },
+    {
+      name: "Alhamdulillah",
+      target: 33,
+      arabic: "الْحَمْدُ لِلَّهِ",
+      latin: "Alhamdulillāh",
+      meaning: "“Segala puji hanya bagi Allah, Rabb semesta alam pembawa karunia.”"
+    },
+    {
+      name: "Allahu Akbar",
+      target: 33,
+      arabic: "اللَّهُ أَكْبَرُ",
+      latin: "Allāhu Akbar",
+      meaning: "“Allah Maha Besar melampaui segala sesuatu dan kekhawatiran jiwa.”"
+    },
+    {
+      name: "Astaghfirullah",
+      target: 100,
+      arabic: "أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ",
+      latin: "Astaghfirullāh al-‘Azhīm",
+      meaning: "“Aku memohon ampunan kepada Allah Yang Maha Agung atas khilaf & lupa.”"
+    },
+    {
+      name: "Laa ilaha illallah",
+      target: 100,
+      arabic: "لَا إِلٰهَ إِلَّا اللَّهُ",
+      latin: "Lā ilāha illallāh",
+      meaning: "“Tiada sesembahan yang berhak diibadahi dengan benar selain Allah.”"
+    },
+    {
+      name: "Dzikir Bebas",
+      target: 0,
+      arabic: "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ",
+      latin: "Hasbunallāhu wa Ni'mal Wakīl",
+      meaning: "“Cukuplah Allah menjadi Penolong kami dan Dia adalah sebaik-baik Pelindung.”"
+    }
+  ];
+
+  let currentDzikirIndex = 0;
+  let currentCount = 27;
+  let currentCycle = 1;
+  let totalDailyCount = 842;
+  const totalDailyTarget = 1000;
+  let isHapticActive = true;
+  let isAudioActive = true;
+  let isOledMode = false;
+
+  const circumference = 2 * Math.PI * 98; // ~615.75
+
+  function updateDisplay() {
+    const dz = dzikirCollection[currentDzikirIndex];
+    const counterEl = document.getElementById('counterValue');
+    const targetDenomEl = document.getElementById('targetDenominator');
+    const roundEl = document.getElementById('roundCounter');
+    const circle = document.getElementById('progressCircle');
+
+    counterEl.innerText = currentCount;
+    roundEl.innerText = `Putaran ke-${currentCycle}`;
+
+    if (dz.target > 0) {
+      targetDenomEl.innerText = `/ ${dz.target}`;
+      const progressRatio = Math.min(currentCount / dz.target, 1);
+      const offset = circumference - (progressRatio * circumference);
+      circle.style.strokeDashoffset = offset;
+    } else {
+      targetDenomEl.innerText = '/ ∞';
+      circle.style.strokeDashoffset = (circumference - ((currentCount % 100) / 100 * circumference));
+    }
+
+    // Daily metric
+    document.getElementById('totalDzikirLabel').innerText = `Total: ${totalDailyCount} Butir`;
+    const dailyRatio = Math.min((totalDailyCount / totalDailyTarget) * 100, 100);
+    document.getElementById('dailyProgressBar').style.width = `${dailyRatio}%`;
+  }
+
+  function selectDzikir(index) {
+    currentDzikirIndex = index;
+    currentCount = 0;
+    currentCycle = 1;
+    const dz = dzikirCollection[index];
+
+    // Update Pills
+    for (let i = 0; i < dzikirCollection.length; i++) {
+      const pill = document.getElementById(`pill-${i}`);
+      if (i === index) {
+        pill.className = "dzikir-pill flex-shrink-0 px-3.5 py-2 rounded-full bg-primary text-on-primary transition-all duration-300 shadow-sm flex items-center gap-1.5";
+      } else {
+        pill.className = "dzikir-pill flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all duration-300 flex items-center gap-1.5";
+      }
+    }
+
+    // Update Arabic Sanctuary Card
+    document.getElementById('arabicText').innerText = dz.arabic;
+    document.getElementById('latinText').innerText = dz.latin;
+    document.getElementById('meaningText').innerText = dz.meaning;
+
+    updateDisplay();
+  }
+
+  function playClickAudio() {
+    if (!isAudioActive) return;
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      // Warm woody click sound simulation
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(280, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(70, audioCtx.currentTime + 0.045);
+      
+      gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.045);
+      
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.05);
+    } catch(e) {
+      // Audio fallback silent
+    }
+  }
+
+  function triggerHapticFeedback(heavy = false) {
+    if (!isHapticActive || !navigator.vibrate) return;
+    if (heavy) {
+      navigator.vibrate([40, 60, 40]);
+    } else {
+      navigator.vibrate(22);
+    }
+  }
+
+  function incrementCounter(event) {
+    const dz = dzikirCollection[currentDzikirIndex];
+    currentCount++;
+    totalDailyCount++;
+
+    // Ripple visual effect inside button
+    const btn = document.getElementById('giantTasbihBtn');
+    const ripple = document.createElement('span');
+    ripple.className = 'absolute rounded-full bg-secondary-fixed/30 animate-ping pointer-events-none w-20 h-20 -translate-x-1/2 -translate-y-1/2';
+    
+    const rect = btn.getBoundingClientRect();
+    const x = event.clientX ? (event.clientX - rect.left) : (rect.width / 2);
+    const y = event.clientY ? (event.clientY - rect.top) : (rect.height / 2);
+    
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    btn.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+
+    // Bounce center count number
+    const counterEl = document.getElementById('counterValue');
+    counterEl.classList.add('scale-125');
+    setTimeout(() => counterEl.classList.remove('scale-125'), 120);
+
+    playClickAudio();
+
+    // Check completion threshold
+    if (dz.target > 0 && currentCount >= dz.target) {
+      triggerHapticFeedback(true);
+      currentCount = 0;
+      currentCycle++;
+    } else {
+      triggerHapticFeedback(false);
+    }
+
+    updateDisplay();
+  }
+
+  function toggleHaptic() {
+    isHapticActive = !isHapticActive;
+    const btn = document.getElementById('btnHaptic');
+    btn.innerHTML = `<span class="material-symbols-outlined text-[17px] text-secondary">vibration</span><span>Haptic: ${isHapticActive ? 'ON' : 'OFF'}</span>`;
+  }
+
+  function toggleAudio() {
+    isAudioActive = !isAudioActive;
+    const btn = document.getElementById('btnAudio');
+    btn.innerHTML = `<span class="material-symbols-outlined text-[17px] text-secondary">${isAudioActive ? 'volume_up' : 'volume_off'}</span><span>Suara: ${isAudioActive ? 'ON' : 'OFF'}</span>`;
+  }
+
+  // Modals Management
+  function promptResetModal() {
+    document.getElementById('resetDialog').classList.remove('hidden');
+    document.getElementById('resetDialog').classList.add('flex');
+  }
+
+  function closeResetModal() {
+    document.getElementById('resetDialog').classList.add('hidden');
+    document.getElementById('resetDialog').classList.remove('flex');
+  }
+
+  function confirmReset() {
+    currentCount = 0;
+    currentCycle = 1;
+    updateDisplay();
+    closeResetModal();
+  }
+
+  function openWeeklyHistory() {
+    document.getElementById('historyModal').classList.remove('hidden');
+    document.getElementById('historyModal').classList.add('flex');
+  }
+
+  function closeWeeklyHistory() {
+    document.getElementById('historyModal').classList.add('hidden');
+    document.getElementById('historyModal').classList.remove('flex');
+  }
+
+  function openNoteModal() {
+    document.getElementById('noteModal').classList.remove('hidden');
+    document.getElementById('noteModal').classList.add('flex');
+  }
+
+  function closeNoteModal() {
+    document.getElementById('noteModal').classList.add('hidden');
+    document.getElementById('noteModal').classList.remove('flex');
+  }
+
+  function saveNote() {
+    closeNoteModal();
+  }
+
+  function toggleOledFocus() {
+    isOledMode = !isOledMode;
+    const root = document.getElementById('tasbihRoot');
+    const oledBtn = document.getElementById('oledToggleBtn');
+    
+    if (isOledMode) {
+      root.classList.add('bg-black', 'text-surface-bright');
+      oledBtn.classList.add('bg-secondary-container', 'text-on-secondary-container');
+    } else {
+      root.classList.remove('bg-black', 'text-surface-bright');
+      oledBtn.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+    }
+  }
+
+  // Initialize
+  updateDisplay();
+</script></main>
+</body></html>
+
