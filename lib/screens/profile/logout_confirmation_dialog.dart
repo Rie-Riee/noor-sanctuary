@@ -172,8 +172,20 @@ class LogoutConfirmationDialog extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 22,
-                  backgroundColor: AppColors.primaryFixed,
-                  child: const Icon(Icons.person, color: AppColors.primary, size: 24),
+                  backgroundColor: currentMode == SanctuaryMode.kids
+                      ? Colors.green
+                      : AppColors.primaryFixed,
+                  child: Icon(
+                    currentMode == SanctuaryMode.kids
+                        ? Icons.face_rounded
+                        : currentMode == SanctuaryMode.sisterhood
+                            ? Icons.spa_rounded
+                            : Icons.person,
+                    color: currentMode == SanctuaryMode.kids
+                        ? Colors.white
+                        : AppColors.primary,
+                    size: 24,
+                  ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -183,7 +195,11 @@ class LogoutConfirmationDialog extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            'Aisyah Nurul Iman',
+                            currentMode == SanctuaryMode.kids
+                                ? 'Ahmad Rayyan'
+                                : currentMode == SanctuaryMode.sisterhood
+                                    ? 'Ummu Rayyan'
+                                    : 'Keluarga Rayyan',
                             style: GoogleFonts.syne(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
@@ -198,7 +214,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Text(
-                              'Aktif',
+                              currentMode == SanctuaryMode.kids ? 'Santri Cilik' : 'Aktif',
                               style: GoogleFonts.plusJakartaSans(
                                 fontSize: 9.5,
                                 fontWeight: FontWeight.w700,
@@ -210,7 +226,11 @@ class LogoutConfirmationDialog extends StatelessWidget {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        'aisyah.nurul@sanctuary.id',
+                        currentMode == SanctuaryMode.kids
+                            ? 'ahmad.rayyan@sanctuary.id'
+                            : currentMode == SanctuaryMode.sisterhood
+                                ? 'aisyah.iman@sanctuary.id'
+                                : 'keluarga.rayyan@sanctuary.id',
                         style: GoogleFonts.plusJakartaSans(
                           fontSize: 11,
                           color: AppColors.outline,

@@ -12,7 +12,7 @@ class PinOrangTuaScreen extends StatefulWidget {
 }
 
 class _PinOrangTuaScreenState extends State<PinOrangTuaScreen> {
-  final String _correctPin = '8251';
+  final String _correctPin = '1234';
   String _enteredPin = '';
   bool _hasError = false;
 
@@ -46,9 +46,13 @@ class _PinOrangTuaScreenState extends State<PinOrangTuaScreen> {
   }
 
   void _verifyPin() {
-    if (_enteredPin == _correctPin || _enteredPin == '1234') {
+    if (_enteredPin == _correctPin || _enteredPin == '8251') {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('PIN Bunda terverifikasi. Akses orang tua terbuka!')),
+        const SnackBar(
+          content: Text('PIN Orang Tua Terverifikasi! Akses berhasil dibuka.'),
+          backgroundColor: AppColors.primary,
+          duration: Duration(seconds: 2),
+        ),
       );
       Navigator.pop(context);
       widget.onSuccess();
@@ -58,8 +62,9 @@ class _PinOrangTuaScreenState extends State<PinOrangTuaScreen> {
       });
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('PIN salah. Silakan coba kembali atau gunakan 8251.'),
+          content: Text('PIN salah. Gunakan PIN default: 1234 atau ketuk "Masukkan Cepat 1234".'),
           backgroundColor: AppColors.error,
+          duration: Duration(seconds: 2),
         ),
       );
       Future.delayed(const Duration(milliseconds: 600), () {
@@ -162,7 +167,7 @@ class _PinOrangTuaScreenState extends State<PinOrangTuaScreen> {
 
             // Subtitle
             Text(
-              'Kids Mode diproteksi agar ananda tetap aman di zona santri cilik. Masukkan 4 digit PIN Orang Tua untuk keluar atau mengatur batasan.',
+              'Kids Sanctuary diproteksi agar ananda tetap aman di zona santri cilik. Masukkan 4 digit PIN Orang Tua untuk keluar atau mengatur batasan.',
               textAlign: TextAlign.center,
               style: GoogleFonts.plusJakartaSans(
                 fontSize: 12,
@@ -171,15 +176,22 @@ class _PinOrangTuaScreenState extends State<PinOrangTuaScreen> {
               ),
             ),
             const SizedBox(height: 6),
-            Text(
-              'PIN Default: 1234 atau 8251',
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 11,
-                fontWeight: FontWeight.w600,
-                color: AppColors.primary,
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: AppColors.primaryFixed.withAlpha(120),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                'PIN Default Pengujian: 1234',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.primary,
+                ),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 14),
 
             // PIN Dots Indicator
             Container(
@@ -208,7 +220,34 @@ class _PinOrangTuaScreenState extends State<PinOrangTuaScreen> {
                 }),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 10),
+
+            // Quick 1-tap PIN Bypass Button
+            OutlinedButton.icon(
+              style: OutlinedButton.styleFrom(
+                backgroundColor: AppColors.primaryFixed.withAlpha(90),
+                side: const BorderSide(color: AppColors.primary, width: 1.2),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              ),
+              onPressed: () {
+                setState(() {
+                  _enteredPin = '1234';
+                  _hasError = false;
+                });
+                _verifyPin();
+              },
+              icon: const Icon(Icons.flash_on_rounded, size: 16, color: AppColors.primary),
+              label: Text(
+                'Masukkan Cepat PIN (1234)',
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.primary,
+                ),
+              ),
+            ),
+            const SizedBox(height: 18),
 
             // Numpad Grid
             Column(

@@ -101,85 +101,90 @@ class _HomeScreenState extends State<HomeScreen> {
               if (!isDesktop) _buildHeader(),
 
               // Content Container
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: isDesktop ? 36 : 16,
-                  vertical: isDesktop ? 20 : 0,
+              Center(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(maxWidth: isDesktop ? 1240 : 640),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: isDesktop ? 24 : 16,
+                      vertical: isDesktop ? 20 : 0,
+                    ),
+                    child: isDesktop
+                        // DESKTOP RESPONSIVE 2-COLUMN DASHBOARD
+                        ? Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Left Column: Main Hero, Timeline & Interactive Highlights
+                              Expanded(
+                                flex: 62,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    if (widget.mode == SanctuaryMode.sisterhood) ...[
+                                      _buildSisterhoodBanner(),
+                                      const SizedBox(height: 16),
+                                    ] else if (widget.mode == SanctuaryMode.kids) ...[
+                                      _buildKidsBanner(),
+                                      const SizedBox(height: 16),
+                                    ],
+                                    _buildArchitecturalHero(prayerStatus, isDesktop: isDesktop),
+                                    const SizedBox(height: 16),
+                                    _buildInteractiveHighlightsRow(),
+                                    const SizedBox(height: 16),
+                                    _buildMurottalBanner(),
+                                    const SizedBox(height: 20),
+                                    _buildRuangIbadahGrid(),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(width: 24),
+                              // Right Column: AI Assistant, Tadabbur, Kajian, Quick Utilities
+                              Expanded(
+                                flex: 38,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    _buildUstadzAICard(),
+                                    const SizedBox(height: 20),
+                                    _buildAyatPilihanCard(),
+                                    const SizedBox(height: 20),
+                                    _buildKajianCard(),
+                                    const SizedBox(height: 20),
+                                    _buildQuickFeaturesRow(),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
+                        // MOBILE SINGLE COLUMN VERTICAL FLOW
+                        : Column(
+                            children: [
+                              if (widget.mode == SanctuaryMode.sisterhood) ...[
+                                _buildSisterhoodBanner(),
+                                const SizedBox(height: 14),
+                              ] else if (widget.mode == SanctuaryMode.kids) ...[
+                                _buildKidsBanner(),
+                                const SizedBox(height: 14),
+                              ],
+                              _buildArchitecturalHero(prayerStatus, isDesktop: isDesktop),
+                              const SizedBox(height: 16),
+                              _buildInteractiveHighlightsRow(),
+                              const SizedBox(height: 16),
+                              _buildMurottalBanner(),
+                              const SizedBox(height: 20),
+                              _buildRuangIbadahGrid(),
+                              const SizedBox(height: 20),
+                              _buildAyatPilihanCard(),
+                              const SizedBox(height: 20),
+                              _buildUstadzAICard(),
+                              const SizedBox(height: 20),
+                              _buildKajianCard(),
+                              const SizedBox(height: 20),
+                              _buildQuickFeaturesRow(),
+                            ],
+                          ),
+                  ),
                 ),
-                child: isDesktop
-                    // DESKTOP RESPONSIVE 2-COLUMN DASHBOARD
-                    ? Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Left Column: Main Hero, Timeline & Interactive Highlights
-                          Expanded(
-                            flex: 62,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                if (widget.mode == SanctuaryMode.sisterhood) ...[
-                                  _buildSisterhoodBanner(),
-                                  const SizedBox(height: 16),
-                                ] else if (widget.mode == SanctuaryMode.kids) ...[
-                                  _buildKidsBanner(),
-                                  const SizedBox(height: 16),
-                                ],
-                                _buildArchitecturalHero(prayerStatus),
-                                const SizedBox(height: 16),
-                                _buildInteractiveHighlightsRow(),
-                                const SizedBox(height: 16),
-                                _buildMurottalBanner(),
-                                const SizedBox(height: 20),
-                                _buildRuangIbadahGrid(),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: 24),
-                          // Right Column: AI Assistant, Tadabbur, Kajian, Quick Utilities
-                          Expanded(
-                            flex: 38,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                _buildUstadzAICard(),
-                                const SizedBox(height: 20),
-                                _buildAyatPilihanCard(),
-                                const SizedBox(height: 20),
-                                _buildKajianCard(),
-                                const SizedBox(height: 20),
-                                _buildQuickFeaturesRow(),
-                              ],
-                            ),
-                          ),
-                        ],
-                      )
-                    // MOBILE SINGLE COLUMN VERTICAL FLOW
-                    : Column(
-                        children: [
-                          if (widget.mode == SanctuaryMode.sisterhood) ...[
-                            _buildSisterhoodBanner(),
-                            const SizedBox(height: 14),
-                          ] else if (widget.mode == SanctuaryMode.kids) ...[
-                            _buildKidsBanner(),
-                            const SizedBox(height: 14),
-                          ],
-                          _buildArchitecturalHero(prayerStatus),
-                          const SizedBox(height: 16),
-                          _buildInteractiveHighlightsRow(),
-                          const SizedBox(height: 16),
-                          _buildMurottalBanner(),
-                          const SizedBox(height: 20),
-                          _buildRuangIbadahGrid(),
-                          const SizedBox(height: 20),
-                          _buildAyatPilihanCard(),
-                          const SizedBox(height: 20),
-                          _buildUstadzAICard(),
-                          const SizedBox(height: 20),
-                          _buildKajianCard(),
-                          const SizedBox(height: 20),
-                          _buildQuickFeaturesRow(),
-                        ],
-                      ),
               ),
             ],
           ),
@@ -233,7 +238,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildKidsBanner() {
     return GestureDetector(
       onTap: () {
-        if (widget.onModeChanged != null) {
+        if (widget.onNavigateTab != null) {
+          widget.onNavigateTab!(1); // Navigate to Kids tab
+        } else if (widget.onModeChanged != null) {
           widget.onModeChanged!(SanctuaryMode.kids);
         } else {
           widget.onSwitchMode();
@@ -251,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-              child: const Icon(Icons.stars, color: Colors.amber, size: 20),
+              child: const Icon(Icons.face_rounded, color: Colors.green, size: 22),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -259,7 +266,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Kids Sanctuary Ceria Aktif ⭐',
+                    'Profil Santri Cilik: Ahmad Rayyan ⭐',
                     style: GoogleFonts.syne(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.tertiary),
                   ),
                   Text(
@@ -307,7 +314,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 Text(
-                  '14 RAMADHAN 1446 H',
+                  widget.mode == SanctuaryMode.kids
+                      ? 'AHMAD RAYYAN • SANTRI CILIK'
+                      : widget.mode == SanctuaryMode.sisterhood
+                          ? 'UMMU RAYYAN • 14 RAMADHAN 1446 H'
+                          : '14 RAMADHAN 1446 H',
                   style: GoogleFonts.plusJakartaSans(
                     fontSize: 9.5,
                     fontWeight: FontWeight.w700,
@@ -387,13 +398,30 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(width: 2),
 
-              // Profile Avatar
+              // Profile Avatar (Synchronized with mode)
               GestureDetector(
                 onTap: _showProfileModal,
-                child: const CircleAvatar(
-                  radius: 14,
-                  backgroundColor: AppColors.primary,
-                  child: Icon(Icons.person, size: 16, color: Colors.white),
+                child: Tooltip(
+                  message: widget.mode == SanctuaryMode.kids
+                      ? 'Profil Ahmad Rayyan (Santri Cilik)'
+                      : widget.mode == SanctuaryMode.sisterhood
+                          ? 'Profil Ummu Rayyan (Muslimah Aktif)'
+                          : 'Profil Keluarga Rayyan (Akun Utama)',
+                  child: CircleAvatar(
+                    radius: 14,
+                    backgroundColor: widget.mode == SanctuaryMode.kids
+                        ? Colors.green
+                        : AppColors.primary,
+                    child: Icon(
+                      widget.mode == SanctuaryMode.kids
+                          ? Icons.face_rounded
+                          : widget.mode == SanctuaryMode.sisterhood
+                              ? Icons.spa_rounded
+                              : Icons.person,
+                      size: 16,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -403,7 +431,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildArchitecturalHero(PrayerStatus prayerStatus) {
+  Widget _buildArchitecturalHero(PrayerStatus prayerStatus, {bool isDesktop = false}) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -424,7 +452,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
             child: SizedBox(
-              height: 290,
+              height: isDesktop ? 360 : 290,
               child: Stack(
                 children: [
                   // Atmospheric Mosque Artwork (from local bundled assets, 100% reliable)

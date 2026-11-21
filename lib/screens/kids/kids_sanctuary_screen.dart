@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_theme.dart';
+import 'pin_orang_tua_dialog.dart';
 
 class KidsSanctuaryScreen extends StatefulWidget {
   final VoidCallback onExitKidsMode;
@@ -32,70 +33,13 @@ class _KidsSanctuaryScreenState extends State<KidsSanctuaryScreen> {
   final List<Offset?> _drawingPoints = [];
 
   void _showParentPinDialog() {
-    final pinController = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: AppColors.surfaceContainerLowest,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-          title: Row(
-            children: [
-              const Icon(Icons.lock, color: AppColors.primary),
-              const SizedBox(width: 8),
-              Text(
-                'Kunci PIN Orang Tua',
-                style: GoogleFonts.syne(fontSize: 16, fontWeight: FontWeight.w700),
-              ),
-            ],
-          ),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Masukkan 4 angka PIN keamanan orang tua untuk keluar dari Kids Sanctuary:',
-                  style: GoogleFonts.plusJakartaSans(fontSize: 12, color: AppColors.onSurfaceVariant),
-                ),
-                const SizedBox(height: 14),
-                TextField(
-                  controller: pinController,
-                  keyboardType: TextInputType.number,
-                  obscureText: true,
-                  maxLength: 4,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.syne(fontSize: 24, fontWeight: FontWeight.w700, letterSpacing: 8),
-                  decoration: InputDecoration(
-                    hintText: '1234',
-                    filled: true,
-                    fillColor: AppColors.surfaceContainerLow,
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Batal'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (pinController.text == '1234' || pinController.text.isNotEmpty) {
-                  Navigator.pop(context);
-                  widget.onExitKidsMode();
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('PIN Salah! Gunakan PIN default 1234.')),
-                  );
-                }
-              },
-              child: const Text('Buka'),
-            ),
-          ],
-        );
-      },
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => PinOrangTuaScreen(
+          onSuccess: widget.onExitKidsMode,
+        ),
+      ),
     );
   }
 

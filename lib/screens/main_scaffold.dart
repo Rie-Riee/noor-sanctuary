@@ -11,6 +11,7 @@ import 'media/media_sanctuary_tab_screen.dart';
 import 'compass/qibla_compass_screen.dart';
 import 'sisterhood/sisterhood_screen.dart';
 import 'kids/kids_sanctuary_screen.dart';
+import 'kids/pin_orang_tua_dialog.dart';
 import 'notification/pusat_notifikasi_screen.dart';
 import 'search/universal_search_sheet.dart';
 import 'profile/profile_screen.dart';
@@ -73,6 +74,23 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   void _handleModeChange(SanctuaryMode newMode) {
     if (_currentMode != newMode) {
+      if (_currentMode == SanctuaryMode.kids && newMode != SanctuaryMode.kids) {
+        // Require Parental PIN gate when exiting Kids Mode
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => PinOrangTuaScreen(
+              onSuccess: () {
+                setState(() {
+                  _currentMode = newMode;
+                });
+                widget.onModeChanged?.call(newMode);
+              },
+            ),
+          ),
+        );
+        return;
+      }
       setState(() {
         _currentMode = newMode;
       });
@@ -573,18 +591,32 @@ class _MainScaffoldState extends State<MainScaffold> {
                       ),
                       const SizedBox(width: 4),
 
-                      // User Profile Avatar
+                      // User Profile Avatar (Synchronized with Active Mode)
                       GestureDetector(
                         onTap: () => _showProfileModal(context),
                         child: Tooltip(
-                          message: 'Profil Ummu Rayyan (Muslimah Aktif)',
+                          message: _currentMode == SanctuaryMode.kids
+                              ? 'Profil Ahmad Rayyan (Santri Cilik)'
+                              : _currentMode == SanctuaryMode.sisterhood
+                                  ? 'Profil Ummu Rayyan (Muslimah Aktif)'
+                                  : 'Profil Keluarga Rayyan (Akun Utama)',
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              const CircleAvatar(
+                              CircleAvatar(
                                 radius: 16,
-                                backgroundColor: AppColors.primary,
-                                child: Icon(Icons.person, size: 17, color: Colors.white),
+                                backgroundColor: _currentMode == SanctuaryMode.kids
+                                    ? Colors.green
+                                    : AppColors.primary,
+                                child: Icon(
+                                  _currentMode == SanctuaryMode.kids
+                                      ? Icons.face_rounded
+                                      : _currentMode == SanctuaryMode.sisterhood
+                                          ? Icons.spa_rounded
+                                          : Icons.person,
+                                  size: 17,
+                                  color: Colors.white,
+                                ),
                               ),
                               if (screenWidth >= 1240) ...[
                                 const SizedBox(width: 8),
@@ -593,11 +625,19 @@ class _MainScaffoldState extends State<MainScaffold> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Ummu Rayyan',
+                                      _currentMode == SanctuaryMode.kids
+                                          ? 'Ahmad Rayyan'
+                                          : _currentMode == SanctuaryMode.sisterhood
+                                              ? 'Ummu Rayyan'
+                                              : 'Keluarga Rayyan',
                                       style: GoogleFonts.syne(fontSize: 11.5, fontWeight: FontWeight.w700, color: AppColors.onSurface),
                                     ),
                                     Text(
-                                      'Muslimah Aktif',
+                                      _currentMode == SanctuaryMode.kids
+                                          ? 'Santri Cilik (Anak)'
+                                          : _currentMode == SanctuaryMode.sisterhood
+                                              ? 'Muslimah Aktif'
+                                              : 'Akun Utama Keluarga',
                                       style: GoogleFonts.plusJakartaSans(fontSize: 9.5, color: AppColors.secondary),
                                     ),
                                   ],
@@ -617,7 +657,7 @@ class _MainScaffoldState extends State<MainScaffold> {
             Expanded(
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 1360),
+                  constraints: const BoxConstraints(maxWidth: 1240),
                   child: PageView(
                     controller: _pageController,
                     physics: const NeverScrollableScrollPhysics(),

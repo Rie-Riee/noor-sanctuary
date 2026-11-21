@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../models/sanctuary_mode.dart';
 import '../theme/app_colors.dart';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback onLoginSuccess;
+  final Function(SanctuaryMode mode)? onLoginSuccessWithMode;
   final VoidCallback onGoToRegister;
   final VoidCallback onBack;
 
   const LoginScreen({
     super.key,
     required this.onLoginSuccess,
+    this.onLoginSuccessWithMode,
     required this.onGoToRegister,
     required this.onBack,
   });
@@ -23,6 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController(text: '••••••••');
   bool _obscurePassword = true;
   bool _rememberMe = true;
+  SanctuaryMode _selectedProfileMode = SanctuaryMode.sisterhood;
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +116,45 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // Quick Account Selector
+                        Text(
+                          'Pilih Akun / Profil Masuk Cepat:',
+                          style: GoogleFonts.plusJakartaSans(
+                            fontSize: 11.5,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              _buildAccountChip(
+                                label: 'Ummu Rayyan (Bunda)',
+                                email: 'aisyah@sanctuary.id',
+                                mode: SanctuaryMode.sisterhood,
+                                icon: Icons.spa_rounded,
+                              ),
+                              const SizedBox(width: 8),
+                              _buildAccountChip(
+                                label: 'Ahmad Rayyan (Anak)',
+                                email: 'ahmad@sanctuary.id',
+                                mode: SanctuaryMode.kids,
+                                icon: Icons.face_rounded,
+                              ),
+                              const SizedBox(width: 8),
+                              _buildAccountChip(
+                                label: 'Keluarga Rayyan (Umum)',
+                                email: 'keluarga@sanctuary.id',
+                                mode: SanctuaryMode.general,
+                                icon: Icons.people_alt_rounded,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 18),
+
                         // Identifier field
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -245,7 +288,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: double.infinity,
                           height: 50,
                           child: ElevatedButton(
-                            onPressed: widget.onLoginSuccess,
+                            onPressed: () {
+                              if (widget.onLoginSuccessWithMode != null) {
+                                widget.onLoginSuccessWithMode!(_selectedProfileMode);
+                              } else {
+                                widget.onLoginSuccess();
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.primaryContainer,
                               foregroundColor: AppColors.onPrimary,
@@ -360,6 +409,53 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildAccountChip({
+    required String label,
+    required String email,
+    required SanctuaryMode mode,
+    required IconData icon,
+  }) {
+    final isSelected = _selectedProfileMode == mode;
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedProfileMode = mode;
+          _identifierController.text = email;
+        });
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary : AppColors.surfaceContainerLow,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isSelected ? AppColors.primary : AppColors.hairline,
+            width: isSelected ? 1.5 : 1,
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 14,
+              color: isSelected ? Colors.white : AppColors.primary,
+            ),
+            const SizedBox(width: 5),
+            Text(
+              label,
+              style: GoogleFonts.plusJakartaSans(
+                fontSize: 11,
+                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                color: isSelected ? Colors.white : AppColors.onSurface,
+              ),
+            ),
+          ],
         ),
       ),
     );

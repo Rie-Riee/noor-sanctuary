@@ -33,7 +33,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   bool _hideSedekahHistory = true;
   bool _communityStreakStatus = true;
-  final List<String> _pinDigits = ['8', '2', '5', '1'];
+  final List<String> _pinDigits = ['1', '2', '3', '4'];
 
   final List<IconData> _avatarIcons = [
     Icons.person_pin,
@@ -47,9 +47,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   void initState() {
     super.initState();
     _selectedMode = widget.currentMode;
-    _nameController = TextEditingController(text: 'Aisyah Nurul Iman');
-    _kunyahController = TextEditingController(text: 'Ummu Rayyan');
-    _emailController = TextEditingController(text: 'aisyah.nurul@sanctuary.id');
+    if (widget.currentMode == SanctuaryMode.kids) {
+      _nameController = TextEditingController(text: 'Ahmad Rayyan');
+      _kunyahController = TextEditingController(text: 'Santri Cilik (Anak)');
+      _emailController = TextEditingController(text: 'ahmad.rayyan@sanctuary.id');
+    } else if (widget.currentMode == SanctuaryMode.sisterhood) {
+      _nameController = TextEditingController(text: 'Ummu Rayyan');
+      _kunyahController = TextEditingController(text: 'Muslimah Aktif');
+      _emailController = TextEditingController(text: 'aisyah.iman@sanctuary.id');
+    } else {
+      _nameController = TextEditingController(text: 'Keluarga Rayyan');
+      _kunyahController = TextEditingController(text: 'Akun Utama Keluarga');
+      _emailController = TextEditingController(text: 'keluarga.rayyan@sanctuary.id');
+    }
     _phoneController = TextEditingController(text: '+62 812-3456-7890');
     _cityController = TextEditingController(text: 'Jakarta Pusat (WIB / GMT+7)');
   }

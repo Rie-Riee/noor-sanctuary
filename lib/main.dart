@@ -96,6 +96,10 @@ class _NoorSanctuaryAppState extends State<NoorSanctuaryApp> {
       case AppFlowState.login:
         return LoginScreen(
           onLoginSuccess: _startJourney,
+          onLoginSuccessWithMode: (mode) {
+            _onModeSelected(mode);
+            _startJourney();
+          },
           onGoToRegister: _goToRegister,
           onBack: _goToSplash,
         );

@@ -28,8 +28,8 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late SanctuaryMode _currentMode;
-  String _userName = 'Aisyah Nurul Iman';
-  String _userKunyah = 'Ummu Rayyan';
+  late String _userName;
+  late String _userKunyah;
 
   // Sisterhood preferences
   bool _sholatReminder = true;
@@ -38,10 +38,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // Kids preferences
   bool _kidsAdzanReminder = true;
 
+  void _syncProfileNames(SanctuaryMode mode) {
+    if (mode == SanctuaryMode.kids) {
+      _userName = 'Ahmad Rayyan';
+      _userKunyah = 'Santri Cilik (Anak)';
+    } else if (mode == SanctuaryMode.sisterhood) {
+      _userName = 'Ummu Rayyan';
+      _userKunyah = 'Muslimah Aktif';
+    } else {
+      _userName = 'Keluarga Rayyan';
+      _userKunyah = 'Akun Utama Keluarga';
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _currentMode = widget.mode;
+    _syncProfileNames(_currentMode);
   }
 
   void _switchSanctuaryMode(SanctuaryMode targetMode) {
@@ -52,7 +66,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         MaterialPageRoute(
           builder: (_) => PinOrangTuaScreen(
             onSuccess: () {
-              setState(() => _currentMode = targetMode);
+              setState(() {
+                _currentMode = targetMode;
+                _syncProfileNames(targetMode);
+              });
               widget.onSelectMode?.call(targetMode);
               if (Navigator.canPop(context)) {
                 Navigator.pop(context);
@@ -62,7 +79,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       );
     } else {
-      setState(() => _currentMode = targetMode);
+      setState(() {
+        _currentMode = targetMode;
+        _syncProfileNames(targetMode);
+      });
       widget.onSelectMode?.call(targetMode);
       if (Navigator.canPop(context)) {
         Navigator.pop(context);
